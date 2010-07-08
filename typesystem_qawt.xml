@@ -1,0 +1,14 @@
+<typesystem package="com.trolltech.research.qtjambiawtbridge.generated" default-superclass="com.trolltech.qt.QtJambiObject">
+    <load-typesystem name=":/trolltech/generator/typesystem_core.txt" generate="no" />
+    <load-typesystem name=":/trolltech/generator/typesystem_gui.txt" generate="no" />
+    
+    <inject-code>
+        com.trolltech.qt.Utilities.Configuration oldConfiguration = com.trolltech.qt.Utilities.configuration;
+        com.trolltech.qt.Utilities.configuration = com.trolltech.qt.Utilities.Configuration.Release;
+        com.trolltech.qt.Utilities.loadLibrary("jawt");
+        com.trolltech.qt.Utilities.configuration = oldConfiguration;
+    </inject-code>
+    
+    <object-type name="QComponentHostNative" />
+    <object-type name="QWidgetHostNative" />
+</typesystem>
