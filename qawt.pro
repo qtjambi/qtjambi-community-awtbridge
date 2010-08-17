@@ -16,7 +16,7 @@ isEmpty(QTJAMBI_LOCATION_TMP) {
 
 
 
-SOURCES += qtjambiawtbridge.cpp qwidgethostnative.mm qcomponenthostnative.cpp
+SOURCES += qtjambiawtbridge.cpp qwidgethostnative.cpp qcomponenthostnative.cpp
 HEADERS += qwidgethostnative.h qcomponenthostnative.h
 
 include($$(JAMBIDIR)/qtjambi/qtjambi_include.pri)
@@ -33,6 +33,7 @@ win*{
    include(qtwinmigrate/qtwinmigrate.pri)
 }
 mac*{
+   QMAKE_CXXFLAGS += -ObjC++
    INCLUDEPATH += $$(JAVADIR)/include
    LIBPATH += $$(JAVADIR)/lib
    LIBS += -framework JavaVM
