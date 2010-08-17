@@ -13,12 +13,14 @@ QWidgetHostNative::QWidgetHostNative(jobject parentWindow)
 
 #if defined(Q_OS_WIN32)
     : QWIDGETHOSTNATIVE_BASECLASS(getWindowHandle(parentWindow))
+#elif defined(Q_OS_MAC)
+    : QWIDGETHOSTNATIVE_BASECLASS(parentWindow)
 #else
     : QWIDGETHOSTNATIVE_BASECLASS(0)
 #endif
 
 {
-#if !defined(Q_OS_WIN32)
+#if !defined(Q_OS_WIN32) && !defined(Q_OS_MAC)
     embedInto(getWindowHandle(parentWindow));
 #endif
 }
@@ -64,6 +66,8 @@ WId QWidgetHostNative::getWindowHandle(jobject awtWidget)
 
 #if defined(Q_OS_WIN32)
             awtWindowId = reinterpret_cast<JAWT_Win32DrawingSurfaceInfo *>(dsi->platformInfo)->hwnd;
+#elif defined(Q_OS_MAC)
+            awtWindowId = (WId)reinterpret_cast<JAWT_MacOSXDrawingSurfaceInfo *>(dsi->platformInfo)->cocoaViewRef;
 #else
             awtWindowId = reinterpret_cast<JAWT_X11DrawingSurfaceInfo *>(dsi->platformInfo)->drawable;
 #endif

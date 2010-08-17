@@ -16,7 +16,7 @@ isEmpty(QTJAMBI_LOCATION_TMP) {
 
 
 
-SOURCES += qtjambiawtbridge.cpp qwidgethostnative.cpp qcomponenthostnative.cpp
+SOURCES += qtjambiawtbridge.cpp qwidgethostnative.mm qcomponenthostnative.cpp
 HEADERS += qwidgethostnative.h qcomponenthostnative.h
 
 include($$(JAMBIDIR)/qtjambi/qtjambi_include.pri)
@@ -31,7 +31,13 @@ win*{
    INCLUDEPATH += $$PWD/qtwinmigrate
    LIBS += "$$(JAVADIR)/lib/jawt.lib"
    include(qtwinmigrate/qtwinmigrate.pri)
-} else {
+}
+mac*{
+   INCLUDEPATH += $$(JAVADIR)/include
+   LIBPATH += $$(JAVADIR)/lib
+   LIBS += -framework JavaVM
+}
+else {
    INCLUDEPATH += $$PWD/linux
    LIBPATH += $$JAVADIR/lib
    LIBS += -ljawt

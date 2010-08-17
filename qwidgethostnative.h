@@ -8,6 +8,9 @@
 #elif defined(Q_OS_WIN32)
 #  include "qwinwidget.h"
 #  define QWIDGETHOSTNATIVE_BASECLASS QWinWidget
+#elif defined(Q_OS_MAC)
+#  include <QMacNativeWidget>
+#  define QWIDGETHOSTNATIVE_BASECLASS QMacNativeWidget
 #else
 #  include <QtGui/QX11EmbedWidget>
 #  define QWIDGETHOSTNATIVE_BASECLASS QX11EmbedWidget

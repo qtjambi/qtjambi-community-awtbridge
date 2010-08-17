@@ -1,7 +1,11 @@
 #include "qcomponenthostnative.h"
 
 QComponentHostNative::QComponentHostNative(QWidget *parent)
+#if defined(Q_OS_MAC)
+    : QCOMPONENTHOSTNATIVE_BASECLASS(0, parent)
+#else
     : QCOMPONENTHOSTNATIVE_BASECLASS(parent)
+#endif
 {
 }
 

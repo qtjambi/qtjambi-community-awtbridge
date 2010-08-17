@@ -8,7 +8,11 @@
 #elif defined(Q_OS_WIN32)
 #  include "qwinhost.h"
 #  define QCOMPONENTHOSTNATIVE_BASECLASS QWinHost
+#elif defined(Q_OS_MAC)
+#  include "QMacCocoaViewContainer"
+#  define QCOMPONENTHOSTNATIVE_BASECLASS QMacCocoaViewContainer
 #else
+#  include <X11/XLib.h>
 #  include <QtGui/QX11EmbedContainer>
 #  define QCOMPONENTHOSTNATIVE_BASECLASS QX11EmbedContainer
 #endif
